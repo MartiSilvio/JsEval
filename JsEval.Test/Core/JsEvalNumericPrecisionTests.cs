@@ -47,10 +47,13 @@ namespace JsEval.Test.Core
         [Test]
         public void Should_Handle_Rounding_And_Truncating()
         {
-            Assert.That(JsEvalEngine.Evaluate("Math.floor(2.9)"), Is.EqualTo(2));
-            Assert.That(JsEvalEngine.Evaluate("Math.ceil(2.1)"), Is.EqualTo(3));
-            Assert.That(JsEvalEngine.Evaluate("Math.round(2.5)"), Is.EqualTo(3));
-            Assert.That(JsEvalEngine.Evaluate("Math.trunc(-2.9)"), Is.EqualTo(-2));
+            Assert.Multiple(() =>
+            {
+                Assert.That(JsEvalEngine.Evaluate("Math.floor(2.9)"), Is.EqualTo(2));
+                Assert.That(JsEvalEngine.Evaluate("Math.ceil(2.1)"), Is.EqualTo(3));
+                Assert.That(JsEvalEngine.Evaluate("Math.round(2.5)"), Is.EqualTo(3));
+                Assert.That(JsEvalEngine.Evaluate("Math.trunc(-2.9)"), Is.EqualTo(-2));
+            });
         }
 
         [Test]

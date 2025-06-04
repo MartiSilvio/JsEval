@@ -30,16 +30,22 @@ namespace JsEval.Test.Core
         public void Should_Evaluate_NaN()
         {
             var result = JsEvalEngine.Evaluate("0 / 0");
-            Assert.That(result, Is.TypeOf<double>());
-            Assert.That(double.IsNaN((double)result!));
+            Assert.Multiple(() =>
+            {
+                Assert.That(result, Is.TypeOf<double>());
+                Assert.That(double.IsNaN((double)result!));
+            });
         }
 
         [Test]
         public void Should_Evaluate_Large_String_Concatenation()
         {
             var result = JsEvalEngine.Evaluate("'x'.repeat(10000)");
-            Assert.That(result, Is.TypeOf<string>());
-            Assert.That(((string)result!).Length, Is.EqualTo(10000));
+            Assert.Multiple(() =>
+            {
+                Assert.That(result, Is.TypeOf<string>());
+                Assert.That(((string)result!).Length, Is.EqualTo(10000));
+            });
         }
 
         [Test]

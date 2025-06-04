@@ -35,8 +35,11 @@ namespace JsEval.Test.Builtins
                     JsEvalEngine.Evaluate("guid('not-a-guid')");
                 });
 
-                Assert.That(ex!.InnerException?.Message, Does.Contain("not-a-guid"));
-                Assert.That(ex.InnerException?.Message, Does.Contain("is not a valid GUID"));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(ex!.InnerException?.Message, Does.Contain("not-a-guid"));
+                    Assert.That(ex.InnerException?.Message, Does.Contain("is not a valid GUID"));
+                });
             }
 
             [Test]
@@ -47,7 +50,7 @@ namespace JsEval.Test.Builtins
                     JsEvalEngine.Evaluate("guid('')");
                 });
 
-                Assert.That(ex!.InnerException?.Message, Does.Contain("is not a valid GUID"));
+                Assert.That(ex!.InnerException?.Message, Does.Contain("A non-empty GUID string argument is required"));
             }
 
             [Test]
