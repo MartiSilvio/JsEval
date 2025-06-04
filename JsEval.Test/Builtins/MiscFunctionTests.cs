@@ -1,6 +1,4 @@
-using NUnit.Framework;
 using JsEval.Core;
-using System;
 using JsEval.Core.Registry;
 
 namespace JsEval.Test.Builtins

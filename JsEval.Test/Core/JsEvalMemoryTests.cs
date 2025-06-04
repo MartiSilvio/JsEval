@@ -1,8 +1,6 @@
-using System;
 using JsEval.Core;
 using JsEval.Core.Attributes;
 using JsEval.Core.Registry;
-using NUnit.Framework;
 
 namespace JsEval.Test.Core
 {

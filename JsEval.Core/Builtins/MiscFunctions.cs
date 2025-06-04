@@ -1,4 +1,3 @@
-using System;
 using JsEval.Core.Attributes;
 
 namespace JsEval.Core.Builtins
