@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "xhRCRQVG7oc=",
+  "success": true,
+  "projectFilePath": "/Users/silviomartignetti/Developer/Wovera/JsEval/JsEval.Core/JsEval.Core.csproj",
+  "expectedPackageFiles": [
+    "/Users/silviomartignetti/.nuget/packages/acornima/1.1.1/acornima.1.1.1.nupkg.sha512",
+    "/Users/silviomartignetti/.nuget/packages/jint/4.2.2/jint.4.2.2.nupkg.sha512",
+    "/Users/silviomartignetti/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

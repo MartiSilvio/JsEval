@@ -1,0 +1,160 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/silviomartignetti/Developer/Wovera/JsEval/JsEval.Test/JsEval.Test.csproj": {}
+  },
+  "projects": {
+    "/Users/silviomartignetti/Developer/Wovera/JsEval/JsEval.Core/JsEval.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/silviomartignetti/Developer/Wovera/JsEval/JsEval.Core/JsEval.Core.csproj",
+        "projectName": "JsEval.Core",
+        "projectPath": "/Users/silviomartignetti/Developer/Wovera/JsEval/JsEval.Core/JsEval.Core.csproj",
+        "packagesPath": "/Users/silviomartignetti/.nuget/packages/",
+        "outputPath": "/Users/silviomartignetti/Developer/Wovera/JsEval/JsEval.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/silviomartignetti/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Jint": {
+              "target": "Package",
+              "version": "[4.2.2, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/silviomartignetti/Developer/Wovera/JsEval/JsEval.Test/JsEval.Test.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/silviomartignetti/Developer/Wovera/JsEval/JsEval.Test/JsEval.Test.csproj",
+        "projectName": "JsEval.Test",
+        "projectPath": "/Users/silviomartignetti/Developer/Wovera/JsEval/JsEval.Test/JsEval.Test.csproj",
+        "packagesPath": "/Users/silviomartignetti/.nuget/packages/",
+        "outputPath": "/Users/silviomartignetti/Developer/Wovera/JsEval/JsEval.Test/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/silviomartignetti/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/silviomartignetti/Developer/Wovera/JsEval/JsEval.Core/JsEval.Core.csproj": {
+                "projectPath": "/Users/silviomartignetti/Developer/Wovera/JsEval/JsEval.Core/JsEval.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.8.0, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.14.0, )"
+            },
+            "NUnit.Analyzers": {
+              "target": "Package",
+              "version": "[3.9.0, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

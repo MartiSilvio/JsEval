@@ -1,0 +1,75 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "JsEval.Core/1.0.0": {
+        "dependencies": {
+          "Jint": "4.2.2",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "JsEval.Core.dll": {}
+        }
+      },
+      "Acornima/1.1.1": {
+        "runtime": {
+          "lib/net8.0/Acornima.dll": {
+            "assemblyVersion": "1.1.1.0",
+            "fileVersion": "1.1.1.0"
+          }
+        }
+      },
+      "Jint/4.2.2": {
+        "dependencies": {
+          "Acornima": "1.1.1"
+        },
+        "runtime": {
+          "lib/net8.0/Jint.dll": {
+            "assemblyVersion": "4.2.2.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "JsEval.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Acornima/1.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+ul3wnGmz+e845O8pKzA4NVuRiYvPXlVn+5vgQTN7zmBi/VAgV6aAyBtjBkv1tLKUUFCZS6cPJtRPLOQ1D9XHw==",
+      "path": "acornima/1.1.1",
+      "hashPath": "acornima.1.1.1.nupkg.sha512"
+    },
+    "Jint/4.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8TaFaWVtzEVrRq0HsWu/NbOBU0SESnuF/GlbuCNkbys+mv4q3g7TKv3Eugd0cwk+B624KX44GnUDGMQkdWpwgA==",
+      "path": "jint/4.2.2",
+      "hashPath": "jint.4.2.2.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+    }
+  }
+}

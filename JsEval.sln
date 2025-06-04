@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsEval.Test", "JsEval.Test\JsEval.Test.csproj", "{1A3632D5-A0B5-4867-9573-13E4F8460842}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsEval.Core", "JsEval.Core\JsEval.Core.csproj", "{C9A13FEB-2391-466C-BEDC-53DCE6A86C17}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A3632D5-A0B5-4867-9573-13E4F8460842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A3632D5-A0B5-4867-9573-13E4F8460842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A3632D5-A0B5-4867-9573-13E4F8460842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A3632D5-A0B5-4867-9573-13E4F8460842}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9A13FEB-2391-466C-BEDC-53DCE6A86C17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9A13FEB-2391-466C-BEDC-53DCE6A86C17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9A13FEB-2391-466C-BEDC-53DCE6A86C17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9A13FEB-2391-466C-BEDC-53DCE6A86C17}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
