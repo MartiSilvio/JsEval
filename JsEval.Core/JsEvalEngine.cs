@@ -10,7 +10,7 @@ namespace JsEval.Core
     {
         private const int RECURSION_LIMIT = 100;
         private const int MEMORY_LIMIT_BYTES = 2_000_000;
-        private static readonly TimeSpan TIMEOUT_INTERVAL = TimeSpan.FromSeconds(5);
+        private static readonly TimeSpan TIMEOUT_INTERVAL = TimeSpan.FromSeconds(2);
 
         private static readonly string[] BLOCKED_GLOBALS =
         [
@@ -19,22 +19,25 @@ namespace JsEval.Core
             "constructor",
             "AsyncFunction"
         ];
-        
+
         static JsEvalEngine()
         {
             var assembly = Assembly.GetExecutingAssembly();
             JsEvalFunctionRegistry.RegisterFunctionsFromAssembly(assembly);
         }
 
-        public static object? Evaluate(string expression, IServiceProvider? serviceProvider = null)
+        public static object? Evaluate(
+            string expression,
+            IServiceProvider? serviceProvider = null,
+            JsEvalOptions? options = null)
         {
             try
             {
-                var engine = new Engine(cfg => cfg
+                using var engine = new Engine(cfg => cfg
                     .Strict()
-                    .TimeoutInterval(TIMEOUT_INTERVAL)
-                    .LimitMemory(MEMORY_LIMIT_BYTES)
-                    .LimitRecursion(RECURSION_LIMIT)
+                    .TimeoutInterval(options?.TimeoutInterval ?? TIMEOUT_INTERVAL)
+                    .LimitMemory(options?.MemoryLimitBytes ?? MEMORY_LIMIT_BYTES)
+                    .LimitRecursion(options?.RecursionLimit ?? RECURSION_LIMIT)
                 );
 
                 foreach (var name in BLOCKED_GLOBALS)
@@ -67,5 +70,24 @@ namespace JsEval.Core
                 throw new JsEvalException("An error occurred while evaluating the JsEval expression.", ex);
             }
         }
+    }
+
+    public class JsEvalOptions
+    {
+        /// <summary>
+        /// If null, defaults to <see cref="JsEvalEngine.RECURSION_LIMIT"/>.
+        /// </summary>
+        public int? RecursionLimit { get; set; }
+
+        /// <summary>
+        /// If null, defaults to <see cref="JsEvalEngine.MEMORY_LIMIT_BYTES"/>.
+        /// If zero (0) or negative, the memory limit is ignored (no cap is applied).
+        /// </summary>
+        public long? MemoryLimitBytes { get; set; }
+
+        /// <summary>
+        /// If null, defaults to <see cref="JsEvalEngine.TIMEOUT_INTERVAL"/>.
+        /// </summary>
+        public TimeSpan? TimeoutInterval { get; set; }
     }
 }

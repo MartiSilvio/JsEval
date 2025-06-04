@@ -41,7 +41,7 @@ namespace JsEval.Core.Registry
             var parameters = Method.GetParameters();
             var convertedArgs = new object?[parameters.Length];
 
-            for (int i = 0; i < parameters.Length; i++)
+            for (var i = 0; i < parameters.Length; i++)
             {
                 var expectedType = parameters[i].ParameterType;
                 var actualArg = args.Length > i ? args[i] : Type.Missing;
@@ -89,7 +89,7 @@ namespace JsEval.Core.Registry
                 var elementType = targetType.GetElementType()!;
                 var array = ((IEnumerable<object>)arg).Select(item => ConvertArgument(item, elementType)).ToArray();
                 var resultArray = Array.CreateInstance(elementType, array.Length);
-                for (int i = 0; i < array.Length; i++)
+                for (var i = 0; i < array.Length; i++)
                     resultArray.SetValue(array[i], i);
                 return resultArray;
             }

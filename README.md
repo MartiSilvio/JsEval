@@ -1,6 +1,6 @@
 # JsEval
 
-JsEval is a secure and extensible JavaScript evaluation engine for .NET, built on top of [Jint](https://github.com/sebastienros/jint). While Jint provides the core ECMAScript execution capabilities, JsEval adds an application-focused layer that allows .NET applications to dynamically execute JavaScript expressions and scripts, while safely bridging to annotated C# methods and modules through a controlled and configurable runtime.
+**JsEval** is an extensible JavaScript evaluation engine for .NET, built on top of [Jint](https://github.com/sebastienros/jint), while Jint provides the core ECMAScript execution capabilities, JsEval adds an application-focused layer that enables .NET applications to dynamically execute JavaScript expressions and scripts with full support for invoking annotated C# methods and modules — all within a sandboxed, dependency injection-aware runtime.
 
 By combining the flexibility of JavaScript with the structure and type safety of C#, JsEval enables rich scripting capabilities in enterprise and embedded applications—without compromising security, isolation, or control.
 
