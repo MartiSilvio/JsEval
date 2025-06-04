@@ -1,7 +1,6 @@
-using NUnit.Framework;
 using JsEval.Core;
 
-namespace JsEval.Test
+namespace JsEval.Test.Core
 {
     [TestFixture]
     public class JsEvalGlobalLeakageTests

@@ -1,4 +1,6 @@
+using System.Reflection;
 using Jint;
+using JsEval.Core.Registry;
 
 // ReSharper disable InconsistentNaming
 
@@ -17,6 +19,12 @@ namespace JsEval.Core
             "constructor",
             "AsyncFunction"
         ];
+        
+        static JsEvalEngine()
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            JsEvalFunctionRegistry.RegisterFunctionsFromAssembly(assembly);
+        }
 
         public static object? Evaluate(string expression, IServiceProvider? serviceProvider = null)
         {

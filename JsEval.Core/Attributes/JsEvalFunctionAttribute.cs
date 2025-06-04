@@ -1,4 +1,4 @@
-namespace JsEval.Core
+namespace JsEval.Core.Attributes
 {
     [AttributeUsage(AttributeTargets.Method)]
     public class JsEvalFunctionAttribute(string name) : Attribute

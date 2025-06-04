@@ -1,7 +1,8 @@
 using System.Collections.Concurrent;
 using System.Reflection;
+using JsEval.Core.Attributes;
 
-namespace JsEval.Core
+namespace JsEval.Core.Registry
 {
     public static class JsEvalFunctionRegistry
     {
@@ -67,29 +68,7 @@ namespace JsEval.Core
                 }
             }
         }
-
-        public static object? InvokeFunction(string name, IServiceProvider? provider, params object?[] args)
-        {
-            if (!Functions.TryGetValue(name, out var function))
-            {
-                throw new InvalidOperationException($"Function '{name}' not found.");
-            }
-
-            return function.Invoke(provider, args);
-        }
-
-        public static object? InvokeModuleFunction(string moduleName, string functionName, IServiceProvider? provider,
-            params object?[] args)
-        {
-            if (!Modules.TryGetValue(moduleName, out var module))
-                throw new InvalidOperationException($"Module '{moduleName}' not found.");
-
-            if (!module.TryGetValue(functionName, out var function))
-                throw new InvalidOperationException($"Function '{functionName}' not found in module '{moduleName}'.");
-
-            return function.Invoke(provider, args);
-        }
-
+        
         public static IReadOnlyDictionary<string, JsEvalFunctionInfo> GetAllFunctions() => Functions;
 
         public static IReadOnlyDictionary<string, Dictionary<string, JsEvalFunctionInfo>> GetAllModules() => Modules;

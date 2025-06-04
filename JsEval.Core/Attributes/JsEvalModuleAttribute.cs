@@ -1,4 +1,4 @@
-namespace JsEval.Core
+namespace JsEval.Core.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface)]
     public class JsEvalModuleAttribute(string name) : Attribute

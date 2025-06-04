@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace JsEval.Core
+namespace JsEval.Core.Registry
 {
     public class JsEvalFunctionInfo(string name, Type declaringType, MethodInfo method)
     {
@@ -13,7 +13,7 @@ namespace JsEval.Core
         {
             var parameterTypes = Method.GetParameters()
                 .Select(p => p.ParameterType)
-                .Concat(new[] { Method.ReturnType })
+                .Concat([Method.ReturnType])
                 .ToArray();
 
             var delegateType = Expression.GetDelegateType(parameterTypes);

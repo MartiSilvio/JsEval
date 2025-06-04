@@ -1,7 +1,8 @@
-using NUnit.Framework;
 using JsEval.Core;
+using JsEval.Core.Attributes;
+using JsEval.Core.Registry;
 
-namespace JsEval.Test
+namespace JsEval.Test.Core
 {
     [TestFixture]
     public class JsEvalArgumentMappingTests
