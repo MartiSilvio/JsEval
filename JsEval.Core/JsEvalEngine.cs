@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Dynamic;
 using System.Reflection;
 using Jint;
 using JsEval.Core.Registry;
@@ -28,6 +31,7 @@ namespace JsEval.Core
 
         public static object? Evaluate(
             string expression,
+            ExpandoObject? pars = null,
             IServiceProvider? serviceProvider = null,
             JsEvalOptions? options = null)
         {
@@ -44,6 +48,11 @@ namespace JsEval.Core
                 {
                     engine.SetValue(name,
                         new Action(() => throw new JsEvalException($"{name} is disabled in this environment.")));
+                }
+
+                if (pars != null)
+                {
+                    engine.SetValue("pars", pars);
                 }
 
                 foreach (var kv in JsEvalFunctionRegistry.GetAllFunctions())

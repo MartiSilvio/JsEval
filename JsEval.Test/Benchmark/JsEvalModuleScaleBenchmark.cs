@@ -7,6 +7,7 @@ using JsEval.Core.Registry;
 
 namespace JsEval.Test.Benchmark
 {
+    [Explicit]
     [TestFixture]
     public class JsEvalModuleScaleBenchmark
     {
