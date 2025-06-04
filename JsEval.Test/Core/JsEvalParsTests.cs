@@ -2,6 +2,7 @@ using System.Dynamic;
 using Jint.Runtime;
 using JsEval.Core;
 using JsEval.Core.Attributes;
+using JsEval.Core.Error;
 using JsEval.Core.Registry;
 
 namespace JsEval.Test.Core

@@ -1,4 +1,5 @@
 using JsEval.Core.Attributes;
+using JsEval.Core.Error;
 
 namespace JsEval.Core.Builtins
 {

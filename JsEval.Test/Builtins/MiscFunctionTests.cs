@@ -1,4 +1,5 @@
 using JsEval.Core;
+using JsEval.Core.Error;
 using JsEval.Core.Registry;
 
 namespace JsEval.Test.Builtins

@@ -1,4 +1,5 @@
 using JsEval.Core;
+using JsEval.Core.Error;
 
 namespace JsEval.Test.Core
 {

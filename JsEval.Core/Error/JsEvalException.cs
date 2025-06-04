@@ -1,4 +1,4 @@
-namespace JsEval.Core
+namespace JsEval.Core.Error
 {
     public class JsEvalException : Exception
     {

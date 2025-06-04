@@ -1,6 +1,7 @@
 using System.Dynamic;
 using System.Reflection;
 using Jint;
+using JsEval.Core.Error;
 using JsEval.Core.Registry;
 
 // ReSharper disable InconsistentNaming
@@ -35,12 +36,17 @@ namespace JsEval.Core
         {
             try
             {
-                using var engine = new Engine(cfg => cfg
-                    .Strict()
-                    .TimeoutInterval(options?.TimeoutInterval ?? TIMEOUT_INTERVAL)
-                    .LimitMemory(options?.MemoryLimitBytes ?? MEMORY_LIMIT_BYTES)
-                    .LimitRecursion(options?.RecursionLimit ?? RECURSION_LIMIT)
-                );
+                using var engine = new Engine(cfg =>
+                {
+                    cfg
+                        .Strict()
+                        .TimeoutInterval(options?.TimeoutInterval ?? TIMEOUT_INTERVAL)
+                        .LimitMemory(options?.MemoryLimitBytes ?? MEMORY_LIMIT_BYTES)
+                        .LimitRecursion(options?.RecursionLimit ?? RECURSION_LIMIT);
+
+                    cfg.SetTypeConverter(engine => new JsToDotNetConverter(engine));
+                });
+
 
                 foreach (var name in BLOCKED_GLOBALS)
                 {
