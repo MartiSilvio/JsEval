@@ -135,6 +135,22 @@ The final value of the script is returned as the result.
 
 ---
 
+## Passing External Parameters
+
+JsEval lets you pass an arbitrary `ExpandoObject` (commonly named `pars`) into your script. Any properties you set on that object become accessible inside JavaScript as a plain object. For example:
+
+```csharp
+dynamic pars = new ExpandoObject();
+pars.x = 10;
+pars.user = new { Name = "Alice", Age = 30 };
+
+var result1 = JsEvalEngine.Evaluate("pars.x + 5", pars);
+// result1 == 15
+
+var result2 = JsEvalEngine.Evaluate("pars.user.Name + ' is ' + pars.user.Age + ' years old'", pars);
+// result2 == "Alice is 30 years old"
+```
+
 ## Dependency Injection
 
 JsEval supports instance method invocation using a provided `IServiceProvider`. If the function is not static, the engine will resolve the class instance from the service provider.
@@ -157,7 +173,7 @@ var services = new ServiceCollection()
     .BuildServiceProvider();
 
 JsEvalFunctionRegistry.RegisterFunctionsFromType(typeof(Logger));
-JsEvalEngine.Evaluate("log('hello')", services);
+JsEvalEngine.Evaluate("log('hello')", serviceProvider: services);
 ```
 
 ---
@@ -205,30 +221,3 @@ JsEvalFunctionRegistry.ClearAll();
 ```
 
 ---
-
-## Advanced Example
-
-```csharp
-[JsEvalModule("user")]
-public class UserModule
-{
-    [JsEvalFunction("getByKey")]
-    public User GetByKey(string key) => new User { Name = key };
-}
-
-public class GlobalTools
-{
-    [JsEvalFunction("now")]
-    public static string Now() => DateTime.UtcNow.ToString("u");
-}
-```
-
-```csharp
-JsEvalFunctionRegistry.RegisterFunctionsFromType(typeof(UserModule));
-JsEvalFunctionRegistry.RegisterFunctionsFromType(typeof(GlobalTools));
-```
-
-```js
-user.getByKey("mark").Name; // "mark"
-now(); // current UTC timestamp
-```
