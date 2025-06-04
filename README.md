@@ -170,7 +170,7 @@ JsEval enforces execution limits and disables access to sensitive APIs. Specific
 - `globalThis`, `AsyncFunction`, and similar globals are inaccessible
 - Recursion depth is limited (default: 100)
 - Memory usage is capped (~2MB by default)
-- Execution time is limited (default: 2 seconds per evaluation)
+- Execution time is limited (default: 5 seconds per evaluation)
 
 These constraints ensure that untrusted JavaScript code can be executed safely.
 
