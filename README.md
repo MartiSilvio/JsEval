@@ -180,7 +180,7 @@ JsEvalEngine.Evaluate("log('hello')", serviceProvider: services);
 
 ---
 
-## 🔧 Configuration & Extensibility
+## Configuration & Extensibility
 
 JsEval provides mechanisms to customize engine behavior at runtime.
 
@@ -202,6 +202,31 @@ JsEvalEngine.BlockedGlobals.Add("setTimeout");
 
 // Remove a previously blocked global
 JsEvalEngine.BlockedGlobals.Remove("Function");
+```
+
+### Evaluation Options (`JsEvalOptions`)
+
+JsEval allows fine-grained control over how JavaScript code is executed through the `JsEvalOptions` class. You can configure evaluation behavior such as memory limits, recursion depth, and execution timeout.
+
+#### `JsEvalOptions` Parameters
+
+| Property           | Type        | Description                                                                 | Default Value      |
+| ------------------ | ----------- | --------------------------------------------------------------------------- | ------------------ |
+| `RecursionLimit`   | `int?`      | Maximum call stack depth allowed before halting execution.                  | `100`              |
+| `MemoryLimitBytes` | `long?`     | Cap on memory usage in bytes. Set to 0 or negative to disable memory limit. | `2,000,000` (2 MB) |
+| `TimeoutInterval`  | `TimeSpan?` | Maximum time allowed for script execution.                                  | `5 seconds`        |
+
+#### Example: Custom Options
+
+```csharp
+var options = new JsEvalOptions
+{
+    RecursionLimit = 200,
+    MemoryLimitBytes = 5_000_000, // 5MB
+    TimeoutInterval = TimeSpan.FromSeconds(10)
+};
+
+var result = JsEvalEngine.Evaluate("someFunction()", options: options);
 ```
 
 ---
