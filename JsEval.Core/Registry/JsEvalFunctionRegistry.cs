@@ -6,7 +6,7 @@ namespace JsEval.Core.Registry
 {
     public static class JsEvalFunctionRegistry
     {
-        private static readonly ConcurrentDictionary<string, JsEvalFunctionInfo> Functions =
+        private static readonly ConcurrentDictionary<string, JsEvalFunctionInfo> GlobalFunctions =
             new(StringComparer.OrdinalIgnoreCase);
 
         private static readonly ConcurrentDictionary<string, Dictionary<string, JsEvalFunctionInfo>> Modules =
@@ -51,7 +51,7 @@ namespace JsEval.Core.Registry
                 }
                 else
                 {
-                    if (!Functions.TryAdd(attr.Name, funcInfo))
+                    if (!GlobalFunctions.TryAdd(attr.Name, funcInfo))
                     {
                         throw new InvalidOperationException(
                             $"Duplicate global function '{attr.Name}' found in type '{type.FullName}'.");
@@ -69,13 +69,13 @@ namespace JsEval.Core.Registry
             }
         }
         
-        public static IReadOnlyDictionary<string, JsEvalFunctionInfo> GetAllFunctions() => Functions;
+        public static IReadOnlyDictionary<string, JsEvalFunctionInfo> GetAllFunctions() => GlobalFunctions;
 
         public static IReadOnlyDictionary<string, Dictionary<string, JsEvalFunctionInfo>> GetAllModules() => Modules;
 
         public static void ClearAll()
         {
-            Functions.Clear();
+            GlobalFunctions.Clear();
             Modules.Clear();
         }
     }

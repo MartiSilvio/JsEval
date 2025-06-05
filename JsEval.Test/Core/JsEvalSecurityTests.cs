@@ -31,10 +31,19 @@ namespace JsEval.Test.Core
         [Test]
         public void Should_Enforce_Timeout()
         {
-            var ex = Assert.Throws<JsEvalException>(() => { JsEvalEngine.Evaluate("while(true) {}"); });
+            var ex = Assert.Throws<JsEvalException>(() =>
+            {
+                JsEvalEngine.Evaluate("while(true) {}", options: new JsEvalOptions()
+                {
+                    TimeoutInterval = TimeSpan.FromSeconds(2)
+                });
+            });
 
             Assert.That(ex, Is.Not.Null);
+            Assert.That(ex.InnerException, Is.Not.Null);
+            Assert.That(ex.InnerException, Is.TypeOf<TimeoutException>());
         }
+
 
         [Test]
         public void Should_Throw_On_Deep_Recursion()
@@ -104,6 +113,21 @@ namespace JsEval.Test.Core
         {
             var result = JsEvalEngine.Evaluate("typeof globalThis.setTimeout");
             Assert.That(result, Is.EqualTo("undefined"));
+        }
+        
+        [Test]
+        public void Should_Block_All_Registered_Globals()
+        {
+            foreach (var global in JsEvalEngine.BlockedGlobals)
+            {
+                var ex = Assert.Throws<JsEvalException>(() =>
+                    {
+                        JsEvalEngine.Evaluate($"{global}()");
+                    }, $"Expected global '{global}' to be blocked");
+
+                Assert.That(ex, Is.Not.Null, $"Global '{global}' was not blocked properly");
+                Assert.That(ex!.InnerException.Message, Does.Contain($"{global} is disabled in this environment"), $"Unexpected error message for '{global}'");
+            }
         }
     }
 }

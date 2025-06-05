@@ -5,6 +5,7 @@ using Jint.Runtime.Interop;
 using JsEval.Core.Error;
 using JsEval.Core.Registry;
 
+// ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable InconsistentNaming
 
 namespace JsEval.Core
@@ -20,10 +21,15 @@ namespace JsEval.Core
             "eval",
             "Function",
             "constructor",
-            "AsyncFunction"
+            "AsyncFunction",
+            "globalThis",
+            "Promise",
+            "queueMicrotask",
+            "Reflect",
+            "Proxy"
         };
 
-        public static Func<Engine, ITypeConverter> TypeConverter { get; set; } =
+        public static Func<Engine, ITypeConverter> TypeConverterFactory { get; set; } =
             engine => new JsToDotNetConverter(engine);
 
         static JsEvalEngine()
@@ -36,7 +42,8 @@ namespace JsEval.Core
             string expression,
             ExpandoObject? pars = null,
             IServiceProvider? serviceProvider = null,
-            JsEvalOptions? options = null)
+            JsEvalOptions? options = null,
+            CancellationToken cancellationToken = default)
         {
             try
             {
@@ -47,7 +54,8 @@ namespace JsEval.Core
                         .TimeoutInterval(options?.TimeoutInterval ?? TIMEOUT_INTERVAL)
                         .LimitMemory(options?.MemoryLimitBytes ?? MEMORY_LIMIT_BYTES)
                         .LimitRecursion(options?.RecursionLimit ?? RECURSION_LIMIT)
-                        .SetTypeConverter(TypeConverter);
+                        .SetTypeConverter(TypeConverterFactory)
+                        .CancellationToken(cancellationToken);
                 });
 
 
