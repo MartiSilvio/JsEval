@@ -151,6 +151,8 @@ var result2 = JsEvalEngine.Evaluate("pars.user.Name + ' is ' + pars.user.Age + '
 // result2 == "Alice is 30 years old"
 ```
 
+---
+
 ## Dependency Injection
 
 JsEval supports instance method invocation using a provided `IServiceProvider`. If the function is not static, the engine will resolve the class instance from the service provider.
@@ -174,6 +176,32 @@ var services = new ServiceCollection()
 
 JsEvalFunctionRegistry.RegisterFunctionsFromType(typeof(Logger));
 JsEvalEngine.Evaluate("log('hello')", serviceProvider: services);
+```
+
+---
+
+## 🔧 Configuration & Extensibility
+
+JsEval provides mechanisms to customize engine behavior at runtime.
+
+### Custom Type Conversion
+
+You can override the default JavaScript-to-.NET type conversion by assigning a custom converter:
+
+```csharp
+JsEvalEngine.TypeConverterFactory = engine => new MyCustomConverter(engine);
+```
+
+### Dynamic Blocked Globals
+
+To enhance security, JsEval blocks access to certain global JavaScript constructs by default (e.g., eval, Function, constructor). You can dynamically modify this list at runtime:
+
+```charp
+// Add additional globals to block
+JsEvalEngine.BlockedGlobals.Add("setTimeout");
+
+// Remove a previously blocked global
+JsEvalEngine.BlockedGlobals.Remove("Function");
 ```
 
 ---

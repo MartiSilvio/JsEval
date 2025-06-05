@@ -13,7 +13,7 @@ namespace JsEval.Core
     {
         private const int RECURSION_LIMIT = 100;
         private const int MEMORY_LIMIT_BYTES = 2_000_000;
-        private static readonly TimeSpan TIMEOUT_INTERVAL = TimeSpan.FromSeconds(2);
+        private static readonly TimeSpan TIMEOUT_INTERVAL = TimeSpan.FromSeconds(5);
 
         public static readonly HashSet<string> BlockedGlobals = new(StringComparer.OrdinalIgnoreCase)
         {
