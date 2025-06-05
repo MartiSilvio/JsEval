@@ -1,6 +1,7 @@
 using System.Dynamic;
 using System.Reflection;
 using Jint;
+using Jint.Runtime.Interop;
 using JsEval.Core.Error;
 using JsEval.Core.Registry;
 
@@ -22,6 +23,9 @@ namespace JsEval.Core
             "AsyncFunction"
         ];
 
+        public static Func<Engine, ITypeConverter> TypeConverter { get; set; } =
+            engine => new JsToDotNetConverter(engine);
+
         static JsEvalEngine()
         {
             var assembly = Assembly.GetExecutingAssembly();
@@ -42,9 +46,8 @@ namespace JsEval.Core
                         .Strict()
                         .TimeoutInterval(options?.TimeoutInterval ?? TIMEOUT_INTERVAL)
                         .LimitMemory(options?.MemoryLimitBytes ?? MEMORY_LIMIT_BYTES)
-                        .LimitRecursion(options?.RecursionLimit ?? RECURSION_LIMIT);
-
-                    cfg.SetTypeConverter(engine => new JsToDotNetConverter(engine));
+                        .LimitRecursion(options?.RecursionLimit ?? RECURSION_LIMIT)
+                        .SetTypeConverter(TypeConverter);
                 });
 
 
