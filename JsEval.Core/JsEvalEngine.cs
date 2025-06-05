@@ -15,13 +15,13 @@ namespace JsEval.Core
         private const int MEMORY_LIMIT_BYTES = 2_000_000;
         private static readonly TimeSpan TIMEOUT_INTERVAL = TimeSpan.FromSeconds(2);
 
-        private static readonly string[] BLOCKED_GLOBALS =
-        [
+        public static readonly HashSet<string> BlockedGlobals = new(StringComparer.OrdinalIgnoreCase)
+        {
             "eval",
             "Function",
             "constructor",
             "AsyncFunction"
-        ];
+        };
 
         public static Func<Engine, ITypeConverter> TypeConverter { get; set; } =
             engine => new JsToDotNetConverter(engine);
@@ -51,7 +51,7 @@ namespace JsEval.Core
                 });
 
 
-                foreach (var name in BLOCKED_GLOBALS)
+                foreach (var name in BlockedGlobals)
                 {
                     engine.SetValue(name,
                         new Action(() => throw new JsEvalException($"{name} is disabled in this environment.")));
