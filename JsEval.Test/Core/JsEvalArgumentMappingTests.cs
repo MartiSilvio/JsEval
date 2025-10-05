@@ -1,10 +1,7 @@
 using JsEval.Core;
 using JsEval.Core.Attributes;
 using JsEval.Core.Registry;
-using System.Collections.Generic;
-using System.Linq;
 using JsEval.Core.Error;
-using NUnit.Framework;
 
 namespace JsEval.Test.Core
 {

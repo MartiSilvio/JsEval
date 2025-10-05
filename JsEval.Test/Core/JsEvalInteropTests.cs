@@ -1,10 +1,10 @@
-using System;
-using System.Collections.Generic;
 using System.Dynamic;
 using JsEval.Core;
 using JsEval.Core.Attributes;
 using JsEval.Core.Registry;
-using NUnit.Framework;
+
+// ReSharper disable UnusedMember.Global
+// ReSharper disable UnusedType.Global
 
 namespace JsEval.Test.Core
 {
@@ -25,7 +25,7 @@ namespace JsEval.Test.Core
 
             if (raw is IEnumerable<object> enumerable)
             {
-                int count = 0;
+                var count = 0;
                 foreach (var item in enumerable)
                 {
                     Console.WriteLine($"Item: {item} ({item?.GetType()})");

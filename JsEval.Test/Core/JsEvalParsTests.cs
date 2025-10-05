@@ -50,7 +50,7 @@ namespace JsEval.Test.Core
             pars.name = "zoe";
             var result = JsEvalEngine.Evaluate("User.GetByKey(pars.name)", pars);
             Assert.That(result, Is.Not.Null);
-            dynamic user = result!;
+            var user = result!;
             Assert.That(user.Name, Is.EqualTo("zoe"));
         }
 

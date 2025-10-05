@@ -20,6 +20,7 @@ namespace JsEval.Core.Registry
 
             if (Method.IsStatic)
                 return Delegate.CreateDelegate(delegateType, Method);
+            
             var target = provider?.GetService(DeclaringType) ?? Activator.CreateInstance(DeclaringType);
 
             return Delegate.CreateDelegate(delegateType, target!, Method);

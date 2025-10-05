@@ -1,5 +1,6 @@
 using JsEval.Core.Attributes;
 using JsEval.Core.Error;
+// ReSharper disable UnusedMember.Global
 
 namespace JsEval.Core.Builtins
 {
