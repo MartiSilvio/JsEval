@@ -29,7 +29,9 @@ namespace JsEval.Test.Core
                     for (let i = 0; i < 1e8; i++) {
                         sum += i;
                     }
-                    sum;", cancellationToken: tokenSource.Token));
+                    sum;",
+                    options: new JsEvalOptions { MemoryLimitBytes = 0 }, // disable memory cap so cancellation triggers first
+                    cancellationToken: tokenSource.Token));
 
             Assert.That(ex.InnerException, Is.TypeOf<Jint.Runtime.ExecutionCanceledException>());
         }
