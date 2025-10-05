@@ -1,5 +1,7 @@
 # JsEval
 
+[![.NET](https://github.com/MartiSilvio/JsEval/actions/workflows/dotnet.yml/badge.svg)](https://github.com/MartiSilvio/JsEval/actions/workflows/dotnet.yml)
+
 **JsEval** is an extensible JavaScript evaluation engine for .NET, built on top of [Jint](https://github.com/sebastienros/jint), while Jint provides the core ECMAScript execution capabilities, JsEval adds an application-focused layer that enables .NET applications to dynamically execute JavaScript expressions and scripts with full support for invoking annotated C# methods and modules — all within a sandboxed, dependency injection-aware runtime.
 
 By combining the flexibility of JavaScript with the structure and type safety of C#, JsEval enables rich scripting capabilities in enterprise and embedded applications—without compromising security, isolation, or control.
