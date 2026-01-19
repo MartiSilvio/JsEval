@@ -69,6 +69,14 @@ namespace JsEval.Core.Registry
             }
         }
         
+        public static void RegisterModule(string moduleName, Dictionary<string, JsEvalFunctionInfo> functions)
+        {
+            if (!Modules.TryAdd(moduleName, functions))
+            {
+                throw new InvalidOperationException($"Duplicate module name '{moduleName}'.");
+            }
+        }
+
         public static IReadOnlyDictionary<string, JsEvalFunctionInfo> GetAllFunctions() => GlobalFunctions;
 
         public static IReadOnlyDictionary<string, Dictionary<string, JsEvalFunctionInfo>> GetAllModules() => Modules;

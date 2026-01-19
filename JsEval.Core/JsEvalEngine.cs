@@ -12,21 +12,25 @@ namespace JsEval.Core
 {
     public static class JsEvalEngine
     {
-        private const int RECURSION_LIMIT = 100;
-        private const int MEMORY_LIMIT_BYTES = 2_000_000;
-        private static readonly TimeSpan TIMEOUT_INTERVAL = TimeSpan.FromSeconds(5);
+        public static int DefaultRecursionLimit { get; set; } = 100;
+        public static long DefaultMemoryLimitBytes { get; set; } = 2_000_000;
+        public static TimeSpan DefaultTimeoutInterval { get; set; } = TimeSpan.FromSeconds(5);
 
         public static readonly HashSet<string> BlockedGlobals = new(StringComparer.OrdinalIgnoreCase)
         {
-            "eval",
-            "Function",
-            "constructor",
-            "AsyncFunction",
             "globalThis",
             "Promise",
             "queueMicrotask",
             "Reflect",
-            "Proxy"
+            "Proxy",
+            "require",
+            "import",
+            "__proto__",
+            "prototype",
+            "eval",
+            "Function",
+            "constructor",
+            "AsyncFunction"
         };
 
         public static Func<Engine, ITypeConverter> TypeConverterFactory { get; set; } =
@@ -51,9 +55,9 @@ namespace JsEval.Core
                 {
                     cfg
                         .Strict()
-                        .TimeoutInterval(options?.TimeoutInterval ?? TIMEOUT_INTERVAL)
-                        .LimitMemory(options?.MemoryLimitBytes ?? MEMORY_LIMIT_BYTES)
-                        .LimitRecursion(options?.RecursionLimit ?? RECURSION_LIMIT)
+                        .TimeoutInterval(options?.TimeoutInterval ?? DefaultTimeoutInterval)
+                        .LimitMemory(options?.MemoryLimitBytes ?? DefaultMemoryLimitBytes)
+                        .LimitRecursion(options?.RecursionLimit ?? DefaultRecursionLimit)
                         .SetTypeConverter(TypeConverterFactory)
                         .CancellationToken(cancellationToken);
                 });

@@ -235,15 +235,61 @@ var result = JsEvalEngine.Evaluate("someFunction()", options: options);
 
 ## Security Model
 
-JsEval enforces execution limits and disables access to sensitive APIs. Specifically:
+JsEval enforces strict execution limits and disables access to sensitive APIs to ensure untrusted JavaScript code can be executed safely.
 
-- `eval`, `Function`, and constructor access are blocked
-- `globalThis`, `AsyncFunction`, and similar globals are inaccessible
-- Recursion depth is limited (default: 100)
-- Memory usage is capped (~2MB by default)
-- Execution time is limited (default: 5 seconds per evaluation)
+### Blocked Globals
 
-These constraints ensure that untrusted JavaScript code can be executed safely.
+The following JavaScript globals are blocked by default:
+
+| Global          | Reason                                 |
+| --------------- | -------------------------------------- |
+| `eval`          | Prevents dynamic code execution        |
+| `Function`      | Prevents dynamic function creation     |
+| `constructor`   | Prevents access to object constructors |
+| `AsyncFunction` | Prevents async function creation       |
+| `require`       | Prevents module loading                |
+| `import`        | Prevents ES module imports             |
+| `Reflect`       | Prevents reflection APIs               |
+| `Proxy`         | Prevents operation interception        |
+| `__proto__`     | Prevents prototype chain manipulation  |
+| `prototype`     | Prevents prototype modification        |
+
+### CLR Interop
+
+CLR (.NET) type access is disabled by default. The engine does not call `AllowClr()`, so JavaScript code cannot instantiate or access .NET types directly.
+
+### Resource Limits
+
+| Limit           | Default   | Description                 |
+| --------------- | --------- | --------------------------- |
+| Recursion depth | 100       | Maximum call stack depth    |
+| Memory usage    | 2 MB      | Maximum heap allocation     |
+| Execution time  | 5 seconds | Maximum evaluation duration |
+
+These defaults can be configured globally at application startup:
+
+```csharp
+// Configure global defaults (affects all evaluations)
+JsEvalEngine.DefaultRecursionLimit = 200;
+JsEvalEngine.DefaultMemoryLimitBytes = 5_000_000; // 5 MB
+JsEvalEngine.DefaultTimeoutInterval = TimeSpan.FromSeconds(10);
+```
+
+Individual evaluations can still override these via `JsEvalOptions`.
+
+### Extending Security
+
+You can dynamically modify blocked globals at runtime:
+
+```csharp
+// Add additional globals to block
+JsEvalEngine.BlockedGlobals.Add("setTimeout");
+
+// Remove a previously blocked global (use with caution)
+JsEvalEngine.BlockedGlobals.Remove("Reflect");
+```
+
+These constraints ensure that untrusted JavaScript code can be executed safely without risk to the host system.
 
 ---
 

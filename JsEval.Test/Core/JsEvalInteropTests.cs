@@ -2,7 +2,6 @@ using System.Dynamic;
 using JsEval.Core;
 using JsEval.Core.Attributes;
 using JsEval.Core.Registry;
-
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedType.Global
 
